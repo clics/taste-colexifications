@@ -9,7 +9,7 @@ $ git clone https://github.com/lexibank/lexibank-analysed
 $ cd lexibank-analysed
 $ git checkout -v1.0
 $ pip install pycldf
-$ cldf createdb cldf/cldf-metadata.json ../lexibank.sqlite3
+$ cldf createdb cldf/wordlist-metadata.json ../lexibank.sqlite3
 $ cd ..
 $ pip intall csvkit
 ```

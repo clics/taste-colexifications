@@ -8,8 +8,9 @@ Data and Code accompanying the study.
 $ git clone https://github.com/lexibank/lexibank-analysed
 $ cd lexibank-analysed
 $ git checkout -v1.0
-$ pip install pycldf
-$ cldf createdb cldf/wordlist-metadata.json ../lexibank.sqlite3
 $ cd ..
-$ pip intall csvkit
+$ pip install pycldf
+$ cldf createdb lexibank-analysed/cldf/wordlist-metadata.json ../lexibank.sqlite3
+$ cd ..
+$ pip install csvkit
 ```

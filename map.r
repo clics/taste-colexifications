@@ -13,16 +13,12 @@ groundhog.library(pkgs, "2023-10-01")
 #library(maps)
 
 taste <- read_csv( 
-    "taste-colexifications.csv", 
+    "tc.csv", 
     show_col_types = FALSE
-) %>% dplyr::mutate(
-    Concepts = paste0(Concept, "+", ConceptB)
 ) %>% filter( 
-    Concepts == "BITTER+SALTY" | Concepts == "BITTER+SOUR"
+    Parameter == "BITTER+SALTY" | Parameter == "BITTER+SOUR"
 ) %>% dplyr::select( 
     -c(
-        Concept, 
-        ConceptB, 
         Segments, 
         SegmentsB, 
         ID
@@ -33,19 +29,19 @@ taste <- read_csv(
     LanguageName, 
     Language, 
     Family, 
-    Concepts, 
+    Parameter, 
     Latitude, 
     Longitude
 ) %>% summarize( 
-    Colexification = ifelse( 
-        1 %in% Colexification, 
+    Value = ifelse( 
+        1 %in% Value, 
         1, 
-        max(Colexification)
+        max(Value)
     ), .groups = "keep"	      
 ) %>% ungroup(
 ) %>% pivot_wider( 
-    names_from = Concepts, 
-    values_from = Colexification
+    names_from = Parameter, 
+    values_from = Value
 )
 
 print("Loaded the data")
@@ -120,7 +116,7 @@ print("prepared the basemap")
 taste <- taste %>% dplyr::mutate(
     `BITTER+SOUR` = as.factor(`BITTER+SOUR`), 
     `BITTER+SALTY` = as.factor(`BITTER+SALTY`)
-) %>% filter(!is.na(Latitude), !is.na(Longitude)) 
+) 
 
 taste_1 <- taste %>% filter(
     !is.na(`BITTER+SOUR`)

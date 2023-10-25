@@ -11,11 +11,10 @@ SELECT
   table_a.Latitude,
   table_a.Longitude,
   table_a.Family, 
-  table_a.Concept, 
+  table_a.Concept||'+'||table_b.ConceptB as Parameter, 
   table_a.Segments, 
-  table_b.ConceptB, 
   table_b.SegmentsB,
-  table_a.Segments == table_b.SegmentsB as Colexification
+  table_a.Segments = table_b.SegmentsB as Value
 -- query four words in the first table
 FROM
   (
@@ -32,15 +31,15 @@ FROM
       languagetable as l, 
       parametertable as p
     WHERE
-      p.cldf_id == f.cldf_parameterReference
+      p.cldf_id = f.cldf_parameterReference
         AND
-      l.cldf_id == f.cldf_languageReference
+      l.cldf_id = f.cldf_languageReference
         AND
       (
-        p.cldf_name == 'SOUR' 
-          OR p.cldf_name == 'BITTER' 
-          OR p.cldf_name == 'SWEET' 
-          OR p.cldf_name == 'SALTY'
+        p.cldf_name = 'SOUR' 
+          OR p.cldf_name = 'BITTER' 
+          OR p.cldf_name = 'SWEET' 
+          OR p.cldf_name = 'SALTY'
       )  
 ) as table_a
 -- query the words in the second table to join them
@@ -60,10 +59,10 @@ INNER JOIN
       f2.cldf_parameterReference = p2.cldf_id
         AND
       (
-        ConceptB == 'SOUR' 
-          OR ConceptB == 'BITTER'
-          OR ConceptB == 'SWEET'
-          OR ConceptB == 'SALTY'
+        ConceptB = 'SOUR' 
+          OR ConceptB = 'BITTER'
+          OR ConceptB = 'SWEET'
+          OR ConceptB = 'SALTY'
       )
   ) as table_b
 -- conditions for the output, limit to the same language
@@ -74,32 +73,32 @@ ON
   table_a.Concept != table_b.ConceptB
     AND (
       (
-        table_a.Concept == 'BITTER' 
+        table_a.Concept = 'BITTER' 
           AND table_b.ConceptB == 'SALTY'
       )
         OR
       (
-        table_a.Concept == 'BITTER' 
+        table_a.Concept = 'BITTER' 
           AND table_b.ConceptB == 'SOUR'
       )
         OR
       (
-        table_a.Concept == 'BITTER' 
+        table_a.Concept = 'BITTER' 
           AND table_b.ConceptB == 'SWEET'
       )
         OR
       (
-        table_a.Concept == 'SALTY' 
+        table_a.Concept = 'SALTY' 
           AND table_b.ConceptB == 'SOUR'
       )
         OR
       (
-        table_a.Concept == 'SALTY' 
+        table_a.Concept = 'SALTY' 
           AND table_b.ConceptB == 'SWEET'
       )
         OR
       (
-        table_a.Concept == 'SOUR' 
+        table_a.Concept = 'SOUR' 
           AND table_b.ConceptB == 'SWEET'
       )
     )

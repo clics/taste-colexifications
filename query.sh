@@ -105,6 +105,6 @@ ON
 -- order to retrieve data for each language in a block
 ORDER BY 
   Language, 
-  Concept
+  Parameter
 ;
 EOF

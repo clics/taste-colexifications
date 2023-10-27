@@ -74,32 +74,32 @@ ON
     AND (
       (
         table_a.Concept = 'BITTER' 
-          AND table_b.ConceptB == 'SALTY'
+          AND table_b.ConceptB = 'SALTY'
       )
         OR
       (
         table_a.Concept = 'BITTER' 
-          AND table_b.ConceptB == 'SOUR'
+          AND table_b.ConceptB = 'SOUR'
       )
         OR
       (
         table_a.Concept = 'BITTER' 
-          AND table_b.ConceptB == 'SWEET'
+          AND table_b.ConceptB = 'SWEET'
       )
         OR
       (
         table_a.Concept = 'SALTY' 
-          AND table_b.ConceptB == 'SOUR'
+          AND table_b.ConceptB = 'SOUR'
       )
         OR
       (
         table_a.Concept = 'SALTY' 
-          AND table_b.ConceptB == 'SWEET'
+          AND table_b.ConceptB = 'SWEET'
       )
         OR
       (
         table_a.Concept = 'SOUR' 
-          AND table_b.ConceptB == 'SWEET'
+          AND table_b.ConceptB = 'SWEET'
       )
     )
 -- order to retrieve data for each language in a block
